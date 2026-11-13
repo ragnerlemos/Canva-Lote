@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "Tarefa de geração de design em lote",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "processing", "completed", "failed"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "results": { "type": "array" }
+      },
+      "required": ["id", "userId", "status", "createdAt"]
+    }
+  },
+    "SystemConfig": {
+      "title": "System Config",
+      "description": "Configurações do sistema como credenciais do Canva",
+      "type": "object",
+      "properties": {
+        "clientId": { "type": "string" },
+        "clientSecret": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "UserToken": {
+      "title": "User Token",
+      "description": "Tokens de sessão de usuários (ex: Canva)",
+      "type": "object",
+      "properties": {
+        "access_token": { "type": "string" },
+        "refresh_token": { "type": "string" },
+        "expires_at": { "type": "number" },
+        "token_type": { "type": "string" },
+        "scope": { "type": "string" }
+      }
+    },
+    "OAuthState": {
+      "title": "OAuth State",
+      "description": "Estados PKCE/OAuth para validação de callback",
+      "type": "object",
+      "properties": {
+        "codeVerifier": { "type": "string" },
+        "createdAt": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Coleção de tarefas"
+    },
+    "/system_config/{configId}": {
+      "schema": "SystemConfig",
+      "description": "Configurações globais do sistema"
+    },
+    "/user_tokens/{tokenId}": {
+      "schema": "UserToken",
+      "description": "Sessões e tokens dos usuários"
+    },
+    "/oauth_states/{stateId}": {
+      "schema": "OAuthState",
+      "description": "Estados OAuth 2.0 PKCE"
+    }
+  }
+}

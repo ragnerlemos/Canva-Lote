@@ -1,0 +1,6 @@
+{
+  "name": "LoteCriativo Canva",
+  "description": "Aplicativo para produção de designs em lote integrado ao Canva.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
